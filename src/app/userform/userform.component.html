@@ -1,0 +1,109 @@
+<div class="modal-container" (click)="cancelForm()">
+  <form
+  class="user-form"
+  (click)="formClick($event)"
+  (ngSubmit)="formMode === 'add' ? addUser() : editUser()"
+  #userform="ngForm"
+  novalidate>
+    <legend>
+      {{ formTitle }}
+      <img src="../../assets/icons/icono_cerrar.svg" alt="close icon" (click)="cancelForm()">
+    </legend>
+
+    <div class="user-form__fieldset">
+      <div class="form-field">
+        <label for="name">Nombre</label>
+
+        <input
+        type="text"
+        id="firstname"
+        name="firstname"
+        required
+        [(ngModel)]="user.firstName"
+        #firstname="ngModel"/>
+
+        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+          <div class="error-msg" *ngIf="firstname.errors?.required">
+            Introduzca su nombre
+          </div>
+       </div>
+      </div>
+
+      <div class="form-field">
+        <label for="lastname">Apellido</label>
+
+        <input
+        type="text"
+        id="lastname"
+        name="lastname"
+        required
+        #lastname="ngModel"
+        [(ngModel)]="user.lastName"
+        />
+
+        <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+          <div class="error-msg" *ngIf="lastname.errors?.required">
+            Introduzca su apellido
+          </div>
+       </div>
+      </div>
+
+      <div class="form-field">
+        <label for="location">Ubicación</label>
+
+        <input
+        type="text"
+        id="location"
+        name="location"
+        required
+        #location="ngModel"
+        [(ngModel)]="user.location"/>
+
+        <div *ngIf="location.invalid && (location.dirty || location.touched)">
+          <div class="error-msg" *ngIf="location.errors?.required">
+            Introduzca su unicación
+          </div>
+       </div>
+      </div>
+
+      <div class="form-field">
+        <label for="phone">Celular</label>
+
+        <input
+        type="tel"
+        id="phone"
+        name="phone"
+        required
+        minlength="10"
+        #phone="ngModel"
+        [(ngModel)]="user.phone"
+        mask="000 000 0000"
+        />
+
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+          <div class="error-msg" *ngIf="phone.errors?.required">
+            Introduzca su teléfono
+          </div>
+          <div class="error-msg" *ngIf="phone.errors?.minlength">
+            Su número debe contener 10 dígitos
+          </div>
+       </div>
+      </div>
+
+      <div class="form-field form-field--inline">
+        <div class="radio-group">
+          <input type="radio" id="gender-h" value="m" name="gender" [(ngModel)]="user.gender"[ngModelOptions]="{standalone: true}"/>
+          <label for="gender-h">Hombre</label>
+        </div>
+
+        <div class="radio-group">
+          <input type="radio" id="gender-m" value="f" name="gender" [(ngModel)]="user.gender"[ngModelOptions]="{standalone: true}"/>
+          <label for="gender-m">Mujer</label>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="!userform.valid">{{ formAction }}</button>
+    <button class="link" type="button" (click)="cancelForm()"> Cancelar</button>
+  </form>
+</div>

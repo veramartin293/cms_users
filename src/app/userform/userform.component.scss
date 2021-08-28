@@ -1,0 +1,115 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0,0,0,.50);
+  z-index: 200;
+}
+
+.user-form {
+  background-color:white;
+  width: 55rem;
+  // width: 40%;
+  min-height: 10rem;
+  padding: 4rem;
+  border-radius: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    & .form-field:last-child {
+      grid-column: span 2;
+    }
+  }
+
+  & legend {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 3px solid $input-bg;
+    position: relative;
+    font-weight: bold;
+
+    & img {
+      width: 2rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  }
+
+  & input:not([type=radio]) {
+    width: 100%;
+    height: 5rem;
+    border-radius: 5rem;
+    text-transform: capitalize;
+  }
+
+  & input[type=radio] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    background-color: $input-bg;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 40%;
+      height: 40%;
+      margin: 20% auto;
+      border-radius: 50%;
+
+    }
+
+    &:checked::before {
+      background-color: $primary-color;
+    }
+  }
+
+  & .btn {
+    color: white;
+    background-color: $primary-color;
+    margin: 0 auto;
+    border-radius: .7rem;
+    width: 9rem;
+    padding: .7rem 0;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  & .link {
+    margin: 0 auto;
+    cursor: pointer;
+    color: $primary-color;
+    border-bottom: 1px solid $primary-color;
+    padding: 0;
+    line-height: 1rem;
+  }
+
+  @include responsive(phone) {
+    width: 100%;
+  }
+
+}

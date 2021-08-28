@@ -1,0 +1,50 @@
+<app-header (onAddingUser)="addUser($event)"></app-header>
+
+<div class="users content">
+  <div class="users__header">
+    <div class="users__title">
+      <img src="../../assets/icons/icono_usuarios.svg" alt="users icon">
+      <h3>Usuarios</h3>
+    </div>
+
+    <div class="users__search">
+      <div class="search-container">
+        <input type="text" placeholder="Buscador" [(ngModel)]="searchText" />
+        <div class="img-container">
+          <img src="../../assets/icons/icono_buscar.svg" alt="search icon">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="users__grid">
+    <app-user
+    *ngFor="let user of users | search: searchText"
+    [user]=user
+    (onEditingUser)="modifyUser($event)"
+    @formAnimation>
+    </app-user>
+  </div>
+
+  <app-userform
+  [user]="userToModify"
+  [formMode]="'edit'"
+  *ngIf="showModal"
+  (onClosingForm)="showModal = false"
+  (operationCompleted)="displayNotificaction($event)"
+  (userAdded)="onUserAdded($event)"
+  @formAnimation></app-userform>
+
+  <div
+  @notiAnimation
+  class="notification"
+  *ngIf="notification.message"
+  [ngClass]="{
+    'notification--green': notification.status,
+    'notification--red': !notification.status
+  }">
+    <p>{{ notification.message }}</p>
+  </div>
+</div>
+
+

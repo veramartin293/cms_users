@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables';
+@import 'mixins';
+
+// Fonts
+@font-face {
+  font-family: "Poppins";
+  src: url(assets/fonts/Poppins-Regular.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(assets/fonts/Poppins-Bold.otf) format("opentype");
+  font-weight: bold;
+}
+
+// General styles
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins';
+}
+
+body {
+  background-color: #f0f0f1;
+  font-size: 1.6rem;
+  position: relative;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+input:not([type=radio]) {
+  display: block;
+  background-color: $input-bg;
+  height: 3.5rem;
+  border-style: none;
+  border-radius: 2rem;
+  outline: none;
+  text-indent: 1.5rem;
+}
+
+label {
+  display: block;
+  width: 100%;
+  margin-bottom: .5rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+// Global classes / Helpers
+.content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btn {
+  border-style: none;
+  padding: .7rem 1.2rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  display: block;
+  transition: all .2s ease;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    opacity: .5 !important;
+    cursor: unset !important;
+  }
+}
+
+.link {
+  background-color: transparent;
+  border: none;
+  display: block;
+}
+
+.icon-container {
+  background-color: $primary-color-dark;
+  border-radius: .6rem;
+  width: 3rem;
+  padding: .5rem;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.notification {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  color: white;
+  font-weight: bold;
+  box-shadow: $box-shadow;
+  height: 4rem;
+  padding: 0 1rem;
+  border-radius: .8rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+
+  &--red {
+    background-color: rgb(255, 67, 67);
+  }
+
+  &--green {
+    background-color: rgb(0, 192, 134);
+  }
+
+  @include responsive(phone) {
+    font-size: 1.3rem;
+  }
+}
+
+// Forms
+
+.radio-group {
+  display: flex;
+  align-items: center;
+
+  & label {
+    width: auto;
+    margin-left: .8rem;
+  }
+}
+
+.form-field {
+
+  &--inline {
+    display: flex;
+
+    & .radio-group:last-child {
+      padding-left: 2rem;
+    }
+  }
+}
+
+.error-msg {
+  font-size: 1rem;
+  color: red;
+  margin-top: .2rem;
+  font-weight: bold;
+}
+

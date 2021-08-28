@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  a,
+  a:visited {
+    color: $primary-color;
+  }
+  &__content {
+    color: rgb(243, 83, 83);
+    width: fit-content;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+}

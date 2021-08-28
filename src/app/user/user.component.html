@@ -1,0 +1,28 @@
+<div class="user">
+  <div class="user__header">
+    <p class="user__name">{{ user.firstName }} {{ user.lastName }}</p>
+    <div class="icon-container" (click)="editUser()">
+      <img src="../../assets/icons/icono_editar.svg" alt="edit-icon" class="user__edit-icon">
+    </div>
+  </div>
+
+  <div class="user__content">
+    <div
+    class="user__image"
+    [ngClass]="{
+      'user__image--male': user.gender === 'm',
+      'user__image--female': user.gender === 'f'
+    }">
+      <img
+      [src]="user.gender === 'm' ?
+        '../../assets/icons/icono_hombre.svg' :
+          '../../assets/icons/icono_mujer.svg'"
+      alt="man-icon">
+    </div>
+
+    <div class="user__text">
+      <p>{{ user.location }}</p>
+      <p>{{ user.phone | phone }}</p>
+    </div>
+  </div>
+</div>
